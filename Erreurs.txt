@@ -1,0 +1,72 @@
+1.1
+Nombres elts pile paramétrable : OK (1 à 10)
+Claviers : OK
+Masquer clavier : OK (pas très intuitif)
+Souris / clavier : OK
+Vues var / prog / param : OK
+
+1.2
+Litt entière : OK
+Litt rationnelle : OK
+Litt réelle : OK
+Litt atome : OK
+Litt expression : OK
+Litt prog : OK
+Affichage délimitateur : OK
+
+1.3
+Rectifiable : OK
+Evaluation auto : OK
+Traitement gauche à droite : OK
+Empilement : OK
+Evaluation litt atome : OK
+Traitement opérateur : OK
+Erreur syntaxe : OK
+Pas eval auto litt expression et programme : OK
+
+1.4.1
++, -, *, / : OK
+DIV, MOD : OK
+NEG : OK
+NUM : OK
+DEN : OK
+POW : OK
+Opérateurs trigo : OK
+SQRT : OK
+EXP : OK
+LN : OK
+Types résultats : OK
+
+1.4.2
+= : OK, mais il faut utiliser ==
+!=, =<, >=, <, > : OK
+AND, OR, NOT : OK
+
+1.4.3
+EVAL : OK
+
+1.4.4
+DUP : OK
+DROP : OK
+CLEAR : OK
+UNDO : OK
+REDO : OK
+
+1.4.5
+IFT : OK
+IFTE : OK
+WHILE : OK
+
+1.5
+Saisie litt programme : OK
+Sous programme : OK
+Evaluation d'un programme avec EVAL : OK
+
+1.6
+STO : OK
+Utilisation var et programmes : OK
+FORGET : OK
+Remarque : cliquer sur une var ou un programme ne provoque pas son évaluation (OK)
+
+Autres erreurs :
+Quitte quand essaie modifier programme/variable inexistant : RESOLU

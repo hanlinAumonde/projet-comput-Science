@@ -1,0 +1,126 @@
+@startuml Litterale
+
+' TypeLitterale: enum class
+
+abstract class Litterale {
+    # TypeLitterale typeLitterale_;
+
+    + ~Litterale() {virtual}
+
+    + affichage(): const QString const = 0
+    + getType(): TypeLitterale const {virtual}
+    + isNull(): bool const = 0
+    + evaluer(): LitteraleNombre* = 0
+    + cloneOnHeapGeneral(): Litterale* const = 0
+    + traiterTrigonometrique(fonction: const std::function<double(double)>,
+    operateur: QString): LitteraleNombre* {virtual}
+    + traiterUnaireSpeciale(operateur: QString): LitteraleNombre* {virtual}
+}
+
+abstract class LitteraleNombre {
+
+    + isPos(): bool const = 0
+    + simplifier(): LitteraleNombre* = 0
+    + puissance(l: &LitteraleReelle): LitteraleNombre* = 0
+    + convertToComplexe(): LitteraleNombre* = 0
+    + cloneOnHeapNombre(): LitteraleNombre* const = 0
+
+    + operator+(l: LitteraleNombre&): LitteraleNombre* = 0
+    + operator-(l: LitteraleNombre&): LitteraleNombre* = 0
+    + operator*(l: LitteraleNombre&): LitteraleNombre* = 0
+    + operator/(l: LitteraleNombre&): LitteraleNombre* = 0
+}
+
+abstract class LitteraleNumerique {
+    - a: LitteraleNumerique* {static}
+    - b: LitteraleNumerique* {static}
+
+    + convertToNumerique(TypeLitterale: type): LitteraleNumerique& = 0
+    + cloneOnHeapGeneral(): Litterale* const = 0
+    + convertToNumerique(type: Typelitterale): LitteraleNumerique* = 0
+    + simplifier(): LittearleNumerique* = 0
+
+    + operator+(l: LitteraleNombre&): LitteraleNombre* {virtual}
+    + operator-(l: LitteraleNombre&): LitteraleNombre* {virtual}
+    + operator*(l: LitteraleNombre&): LitteraleNombre* {virtual}
+    + operator/(l: LitteraleNombre&): LitteraleNombre* {virtual}
+    + calculation(l: LittearleNumerique&): void
+}
+
+' class LitteraleComplexe {
+    '     - partRe_: LitteraleNumerique*
+    '     - partIm_: LitteraleNumerique*
+
+    '     + LitteraleComplexe(re: LitteraleNumerique*, img:LitteraleNumerique*)
+    '     + LitteraleComplexe(l: const LitteraleComplexe&)
+
+    '     + getPartRe(): const LitteraleNumerique& const
+    '     + getPartIm(): const LitteraleNumerique& const
+    '     ' + convertToComplexe(): LitteraleComplexe*
+    '
+    '
+' }
+
+class LitteraleEntiere {
+    - valeur_: long long int
+
+    + LitteraleEntiere(valeur = 0)
+
+    + affichage(f: QString): const QString const {virtual}
+    + isNull(): bool const {virtual}
+    + cloneOnHeapGeneral(): Litterale* const {virtual}
+    + traiterTrigonometrique(fonction: const std::function<double(double)>,
+    operateur: QString): LitteraleNombre* {virtual}
+    + traiterUnaireSpeciale(operateur: QString): LitteraleNombre* {virtual}
+
+    + convertToNumerique(type: Typelitterale): LitteraleNumerique* {virtual}
+    + cloneOnHeapNombre() : LittearleNumerique* const {virtual}
+    + simplifier(): LittearleNumerique* {virtual}
+    + isPos(): bool const {virtual}
+    + puissance(l: LitteraleReelle&): LittearleNumerique* {virtual}
+    + convertToComplexe(): LitteraleNombre* {virtual}
+
+    + operator+(l: LitteraleNombre&): LitteraleNombre* {virtual}
+    + operator-(l: LitteraleNombre&): LitteraleNombre* {virtual}
+    + operator*(l: LitteraleNombre&): LitteraleNombre* {virtual}
+    + operator/(l: LitteraleNombre&): LitteraleNombre* {virtual}
+
+    + getValeur(): double const
+}
+
+class LitteraleReelle {
+    - entier_: int
+    - decimal_: double
+    - valeur_: double
+
+    + LitteraleReelle(decimal: double)
+    + LitteraleReelle(entier: int, decimal: double)
+
+    + getEntier(): int const
+    + getDecimal(): double const
+    + getValeur(): double const
+}
+
+class LitteraleRationnelle {
+    - num_: int
+    - den_: int
+
+    + LitteraleRationnelle(num: int, den: int)
+
+    + getNum(): int const
+    + getDen(): int const
+}
+
+
+' skinparam groupInheritance 2
+
+Litterale <|-- LitteraleNombre
+
+LitteraleNombre <|-- LitteraleNumerique
+' LitteraleNombre <|-- LitteraleComplexe
+
+LitteraleNumerique <|-- LitteraleEntiere
+LitteraleNumerique <|-- LitteraleRationnelle
+LitteraleNumerique <|-- LitteraleReelle
+
+@enduml
